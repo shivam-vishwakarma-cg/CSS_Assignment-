@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo Board</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .board {
+            border-collapse: collapse;
+            border: 1.5px solid #000000;
+        }
+
+        .board td {
+            width: 38px;
+            height: 38px;
+            border: 1px solid #000000;
+            text-align: center;
+            vertical-align: middle;
+            padding: 0;
+        }
+
+        .red {
+            background-color: #ea3223;
+        }
+
+        .green {
+            background-color: #377d22;
+        }
+
+        .blue {
+            background-color: #001df5;
+        }
+
+        .yellow {
+            background-color: #ffff54;
+        }
+
+        .star {
+            font-size: 24px;
+            line-height: 1;
+            color: #000000;
+        }
+
+        .base {
+            width: 228px;
+            height: 228px;
+        }
+
+        .yard {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .inner-box {
+            width: 152px;
+            height: 152px;
+            background-color: #ffffff;
+            display: grid;
+            grid-template-columns: repeat(2, 42px);
+            grid-template-rows: repeat(2, 42px);
+            gap: 24px;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .token {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border-width: 4px;
+            border-style: solid;
+            background-color: #ffffff;
+        }
+
+        .red .token {
+            border-color: #ea3223;
+        }
+
+        .green .token {
+            border-color: #377d22;
+        }
+
+        .blue .token {
+            border-color: #001df5;
+        }
+
+        .yellow .token {
+            border-color: #ffff54;
+        }
+
+        .center-cell {
+            width: 114px;
+            height: 114px;
+        }
+
+        .center-box {
+            width: 114px;
+            height: 114px;
+            position: relative;
+        }
+
+        .tri {
+            position: absolute;
+            inset: 0;
+        }
+
+        .tri-top {
+            background-color: #377d22;
+            clip-path: polygon(0 0, 100% 0, 50% 50%);
+        }
+
+        .tri-right {
+            background-color: #ffff54;
+            clip-path: polygon(100% 0, 100% 100%, 50% 50%);
+        }
+
+        .tri-bottom {
+            background-color: #001df5;
+            clip-path: polygon(0 100%, 100% 100%, 50% 50%);
+        }
+
+        .tri-left {
+            background-color: #ea3223;
+            clip-path: polygon(0 0, 0 100%, 50% 50%);
+        }
+    </style>
+</head>
+<body>
+    <table class="board">
+        <tr>
+            <td class="base red" colspan="6" rowspan="6">
+                <div class="yard">
+                    <div class="inner-box">
+                        <div class="token"></div>
+                        <div class="token"></div>
+                        <div class="token"></div>
+                        <div class="token"></div>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="base green" colspan="6" rowspan="6">
+                <div class="yard">
+                    <div class="inner-box">
+                        <div class="token"></div>
+                        <div class="token"></div>
+                        <div class="token"></div>
+                        <div class="token"></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="green"></td>
+            <td class="green star">★</td>
+        </tr>
+        <tr>
+            <td class="green star">★</td>
+            <td class="green"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="green"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="green"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="green"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="red star">★</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="center-cell" colspan="3" rowspan="3">
+                <div class="center-box">
+                    <div class="tri tri-top"></div>
+                    <div class="tri tri-right"></div>
+                    <div class="tri tri-bottom"></div>
+                    <div class="tri tri-left"></div>
+                </div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="yellow star">★</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="red"></td>
+            <td class="red"></td>
+            <td class="red"></td>
+            <td class="red"></td>
+            <td class="red"></td>
+            <td class="yellow"></td>
+            <td class="yellow"></td>
+            <td class="yellow"></td>
+            <td class="yellow"></td>
+            <td class="yellow"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="red star">★</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="yellow star">★</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="base blue" colspan="6" rowspan="6">
+                <div class="yard">
+                    <div class="inner-box">
+                        <div class="token"></div>
+                        <div class="token"></div>
+                        <div class="token"></div>
+                        <div class="token"></div>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+            <td class="blue"></td>
+            <td></td>
+            <td class="base yellow" colspan="6" rowspan="6">
+                <div class="yard">
+                    <div class="inner-box">
+                        <div class="token"></div>
+                        <div class="token"></div>
+                        <div class="token"></div>
+                        <div class="token"></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="blue"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="blue"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="blue"></td>
+            <td class="blue star">★</td>
+        </tr>
+        <tr>
+            <td class="blue star">★</td>
+            <td class="blue"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

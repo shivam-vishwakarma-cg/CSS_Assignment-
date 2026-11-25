@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #141414;
+            color: #ffffff;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 760px;
+            background-image:
+                linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 24%, rgba(20, 20, 20, 0.25) 75%, #141414 100%),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, transparent 55%),
+                url("assets/Title-Image.png");
+            background-size: cover;
+            background-position: center top;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 56px 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        .nf-logo {
+            height: 26px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .nav-links a.active {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-icon {
+            height: 18px;
+            width: auto;
+            cursor: pointer;
+        }
+
+        .profile-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .profile-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .down-arrow {
+            width: 10px;
+            height: auto;
+        }
+
+        .hero-content {
+            margin-top: auto;
+            padding-bottom: 130px;
+            position: relative;
+        }
+
+        .show-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .show-tag img {
+            height: 24px;
+            width: auto;
+        }
+
+        .show-tag span {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #e5e5e5;
+        }
+
+        .hero-title {
+            font-size: 112px;
+            font-weight: 800;
+            line-height: 0.92;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 4px;
+            padding: 10px 24px;
+            font-size: 16px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .btn img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        .btn-play {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .btn-info {
+            background-color: rgba(109, 109, 110, 0.72);
+            color: #ffffff;
+        }
+
+        .hero-add {
+            position: absolute;
+            right: 0;
+            bottom: 36px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .rows {
+            position: relative;
+            z-index: 2;
+            margin-top: -92px;
+            padding: 0 56px 70px;
+        }
+
+        .row-section {
+            margin-bottom: 42px;
+        }
+
+        .row-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #e5e5e5;
+        }
+
+        .row-title img {
+            height: 14px;
+            width: auto;
+        }
+
+        .cards-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .thumb-card {
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .thumb-card img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        .thumb-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .top10-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .top10-card {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            position: relative;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .rank-num {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 92%;
+            width: auto;
+            z-index: 1;
+        }
+
+        .rank-poster {
+            position: relative;
+            z-index: 2;
+            width: 56%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        .footer {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 36px 56px 32px;
+            color: #808080;
+            font-size: 12px;
+        }
+
+        .socials {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 20px;
+        }
+
+        .socials img {
+            height: 20px;
+            width: auto;
+            cursor: pointer;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px 24px;
+            margin-bottom: 24px;
+        }
+
+        .footer-links a {
+            color: #808080;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .service-btn {
+            background: transparent;
+            border: 1px solid #808080;
+            color: #808080;
+            padding: 7px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-bottom: 18px;
+        }
+
+        .copyright {
+            font-size: 11px;
+            color: #666666;
+        }
+
+        @media (max-width: 1100px) {
+            .cards-row,
+            .top10-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero-title {
+                font-size: 76px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .hero,
+            .rows,
+            .footer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cards-row,
+            .top10-row,
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <nav class="navbar">
+            <div class="nav-left">
+                <img src="assets/NetflixLogoSvg.png" alt="NETFLIX" class="nf-logo">
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Start</a></li>
+                    <li><a href="#">Shows</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">New</a></li>
+                    <li><a href="#">My List</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-right">
+                <img src="assets/Search.png" alt="Search" class="nav-icon">
+                <img src="assets/GiftBox.png" alt="Gifts" class="nav-icon">
+                <img src="assets/NotificationBell.png" alt="Notifications" class="nav-icon">
+                <div class="profile-wrap">
+                    <img src="assets/ProfileIMG.png" alt="Profile" class="profile-img">
+                    <img src="assets/DownArrow.png" alt="" class="down-arrow">
+                </div>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <div class="show-tag">
+                <img src="assets/Netflix_Symbol_RGB 1.png" alt="N">
+                <span>SHOW</span>
+            </div>
+            <h1 class="hero-title">MAID</h1>
+            <div class="hero-actions">
+                <button class="btn btn-play"><img src="assets/Play.png" alt=""> Play</button>
+                <button class="btn btn-info"><img src="assets/Vector.png" alt=""> More info</button>
+            </div>
+            <img src="assets/Add.png" alt="Add" class="hero-add">
+        </div>
+    </header>
+
+    <main class="rows">
+        <section class="row-section">
+            <h2 class="row-title">See again <img src="assets/ArrowRight.png" alt=""></h2>
+            <div class="cards-row">
+                <div class="thumb-card"><img src="assets/section 1.1.png" alt="You"></div>
+                <div class="thumb-card"><img src="assets/section 1.2.png" alt="Snowpiercer"></div>
+                <div class="thumb-card"><img src="assets/section 1.3.png" alt="The Universe"></div>
+                <div class="thumb-card"><img src="assets/section 1.4.png" alt="The Last Kingdom"></div>
+                <div class="thumb-card"><img src="assets/section 1.5.png" alt="Money Heist"></div>
+            </div>
+        </section>
+
+        <section class="row-section">
+            <h2 class="row-title">Top 10 in your country <img src="assets/ArrowRight.png" alt=""></h2>
+            <div class="top10-row">
+                <div class="top10-card">
+                    <img src="assets/Rank - 01.png" alt="1" class="rank-num">
+                    <img src="assets/section 2.1.png" alt="Red Notice" class="rank-poster">
+                </div>
+                <div class="top10-card">
+                    <img src="assets/Rank - 02.png" alt="2" class="rank-num">
+                    <img src="assets/section 2.2.png" alt="Jason Bourne" class="rank-poster">
+                </div>
+                <div class="top10-card">
+                    <img src="assets/Rank - 03.png" alt="3" class="rank-num">
+                    <img src="assets/section 2.3.png" alt="Squid Game" class="rank-poster">
+                </div>
+                <div class="top10-card">
+                    <img src="assets/Rank - 04.png" alt="4" class="rank-num">
+                    <img src="assets/section 2.4.png" alt="Central Intelligence" class="rank-poster">
+                </div>
+                <div class="top10-card">
+                    <img src="assets/Rank - 05.png" alt="5" class="rank-num">
+                    <img src="assets/section 2.5.png" alt="Hellbound" class="rank-poster">
+                </div>
+            </div>
+        </section>
+
+        <section class="row-section">
+            <h2 class="row-title">Trending now <img src="assets/ArrowRight.png" alt=""></h2>
+            <div class="cards-row">
+                <div class="thumb-card"><img src="assets/section 3.1.png" alt="Explained"></div>
+                <div class="thumb-card"><img src="assets/section 3.2.png" alt="Into the Night"></div>
+                <div class="thumb-card"><img src="assets/section 3.3.png" alt="Locke & Key"></div>
+                <div class="thumb-card"><img src="assets/section 3.4.png" alt="The Queen's Gambit"></div>
+                <div class="thumb-card"><img src="assets/section 3.5.png" alt="The Crown"></div>
+            </div>
+        </section>
+
+        <section class="row-section">
+            <h2 class="row-title">Sci-fi shows <img src="assets/ArrowRight.png" alt=""></h2>
+            <div class="cards-row">
+                <div class="thumb-card"><img src="assets/section 4.1.png" alt="Altered Carbon"></div>
+                <div class="thumb-card"><img src="assets/section 4.2.png" alt="Another Life"></div>
+                <div class="thumb-card"><img src="assets/section 4.3.png" alt="The Umbrella Academy"></div>
+                <div class="thumb-card"><img src="assets/section 4.4.png" alt="Sense8"></div>
+                <div class="thumb-card"><img src="assets/section 4.5.png" alt="The Rain"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="socials">
+            <img src="assets/facebook.png" alt="Facebook">
+            <img src="assets/instagram.png" alt="Instagram">
+            <img src="assets/twitter.png" alt="Twitter">
+            <img src="assets/youtube.png" alt="YouTube">
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Seslendirme ve Alt Yazı</a>
+            <a href="#">Sesli Betimleme</a>
+            <a href="#">Yardım Merkezi</a>
+            <a href="#">Hediye Kartları</a>
+            <a href="#">Medya Merkezi</a>
+            <a href="#">Yatırımcı İlişkileri</a>
+            <a href="#">İş İmkanları</a>
+            <a href="#">Kullanım Koşulları</a>
+            <a href="#">Gizlilik</a>
+            <a href="#">Yasal Hükümler</a>
+            <a href="#">Çerez Tercihleri</a>
+            <a href="#">Kurumsal Bilgiler</a>
+            <a href="#">Bize Ulaşın</a>
+        </div>
+
+        <button class="service-btn">Hizmet Kodu</button>
+        <p class="copyright">© 1997-2021 Netflix, Inc. {i-062d573a0ee099242}</p>
+    </footer>
+</body>
+</html>

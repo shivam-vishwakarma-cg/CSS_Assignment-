@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Calculator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #1c1c1c;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .calculator {
+            width: 338px;
+        }
+
+        .display {
+            color: #ffffff;
+            font-size: 76px;
+            font-weight: 400;
+            line-height: 1;
+            text-align: right;
+            padding: 20px 6px 22px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 74px);
+            gap: 14px;
+        }
+
+        .btn {
+            height: 74px;
+            border: none;
+            border-radius: 50%;
+            font-family: inherit;
+            font-size: 32px;
+            font-weight: 400;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        .btn:active {
+            filter: brightness(1.2);
+        }
+
+        .btn-func {
+            background-color: #a2a2a2;
+            color: #000000;
+            font-size: 26px;
+        }
+
+        .btn-num {
+            background-color: #505050;
+            color: #ffffff;
+        }
+
+        .btn-op {
+            background-color: #ff9500;
+            color: #ffffff;
+            font-size: 34px;
+        }
+
+        .btn-zero {
+            grid-column: span 2;
+            border-radius: 37px;
+            justify-content: flex-start;
+        }
+
+        .btn-zero span {
+            width: 74px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">7744</div>
+        <div class="buttons">
+            <button class="btn btn-func">C</button>
+            <button class="btn btn-func">+/-</button>
+            <button class="btn btn-func">%</button>
+            <button class="btn btn-op">÷</button>
+
+            <button class="btn btn-num">7</button>
+            <button class="btn btn-num">8</button>
+            <button class="btn btn-num">9</button>
+            <button class="btn btn-op">x</button>
+
+            <button class="btn btn-num">4</button>
+            <button class="btn btn-num">5</button>
+            <button class="btn btn-num">6</button>
+            <button class="btn btn-op">-</button>
+
+            <button class="btn btn-num">1</button>
+            <button class="btn btn-num">2</button>
+            <button class="btn btn-num">3</button>
+            <button class="btn btn-op">+</button>
+
+            <button class="btn btn-num btn-zero"><span>0</span></button>
+            <button class="btn btn-num">,</button>
+            <button class="btn btn-op">=</button>
+        </div>
+    </div>
+</body>
+</html>

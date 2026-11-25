@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Wars</title>
+    <style>
+
+        body {
+            background-color: #ffffff;
+            font-family: "Times New Roman", Times, serif;
+            color: #000000;
+            padding: 14px 20px;
+        }
+
+        .arena {
+            display: grid;
+            grid-template-columns: 135px 135px 279px 135px 135px;
+            column-gap: 17px;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        .card {
+            border: 1.5px solid #cfcfcf;
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+            padding: 18px 14px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .card img {
+            width: 94px;
+            height: 94px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .name {
+            font-size: 16px;
+            line-height: 1.15;
+            margin-bottom: 6px;
+        }
+
+        .strength {
+            font-size: 44px;
+            line-height: 1;
+        }
+
+        .score {
+            align-self: start;
+            text-align: center;
+            font-size: 44px;
+            line-height: 1;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="arena">
+        <div class="card">
+            <img src="super-1.png" alt="Spiderman">
+            <div class="name">Spiderman</div>
+            <div class="strength">12</div>
+        </div>
+        <div class="card">
+            <img src="super-3.png" alt="Wonder Women">
+            <div class="name">Wonder Women</div>
+            <div class="strength">30</div>
+        </div>
+        <div class="score">5 - 0</div>
+        <div class="card">
+            <img src="super-2.png" alt="Captain America">
+            <div class="name">Captain America</div>
+            <div class="strength">50</div>
+        </div>
+        <div class="card">
+            <img src="super-4.png" alt="Gem Woman">
+            <div class="name">Gem Woman</div>
+            <div class="strength">12</div>
+        </div>
+    </div>
+</body>
+</html>
